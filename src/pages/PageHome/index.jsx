@@ -3,7 +3,7 @@ import PageProdutos from "../PageProdutos";
 
 export default function PageHome() {
   return (
-    <main className="">
+    <main>
       <Header />
       <PageProdutos/>
     </main>
