@@ -1,6 +1,12 @@
-export default function PageCheckout(){
+import CartItem from "../../components/CartItem";
+import HeaderChekout from "../../components/HeaderChekout";
 
-    return(
-        <>d</>
-    )
+export default function PageCheckout() {
+  return (
+    <div className="h-screen w-full">
+      {/* <HeaderChekout /> */}
+
+      <CartItem />
+    </div>
+  );
 }
