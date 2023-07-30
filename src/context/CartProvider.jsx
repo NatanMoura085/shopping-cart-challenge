@@ -1,13 +1,28 @@
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const CartContext = createContext();
 
 export default function CartProvider({ children }) {
   const [cartItems, setCartItems] = useLocalStorage("cartItems", []);
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const addItemToCart = (product) => {
-    setCartItems([...cartItems, product]);
+    const existingItem = cartItems.find((item) => item.id === product.id);
+
+    if (existingItem) {
+      setCartItems((prevItems) =>
+        prevItems.map((item) =>
+          item.id === existingItem.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    }
   };
 
   const removeItemFromCart = (itemId) => {
@@ -17,7 +32,13 @@ export default function CartProvider({ children }) {
   const decreaseCartItem = (itemId) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === itemId ? { ...item, quantity: item.quantity - 1 } : item
+        item.id === itemId
+          ? {
+              ...item,
+              quantity:
+                item.quantity - 1 >= 1 ? item.quantity - 1 : item.quantity,
+            }
+          : item
       )
     );
   };

@@ -1,4 +1,4 @@
-import React from "react";
+
 import ProductCard from "../../components/ProductCard";
 import productList from "../../data/productList";
 import { ShoppingBagOutline } from "@graywolfai/react-heroicons";

@@ -1,11 +1,8 @@
 import CartItem from "../../components/CartItem";
-import HeaderChekout from "../../components/HeaderChekout";
 
 export default function PageCheckout() {
   return (
-    <div className="h-screen w-full">
-      {/* <HeaderChekout /> */}
-
+    <div className=" w-full h-full">
       <CartItem />
     </div>
   );

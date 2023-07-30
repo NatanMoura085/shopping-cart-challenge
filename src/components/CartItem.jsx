@@ -2,10 +2,9 @@ import { useContext } from "react";
 import { CartContext } from "../context/CartProvider";
 import useCurrencyConversion from "../hooks/useCurrencyConversion";
 
-export default function CartItem() {
+const CartItem = () => {
   const { cartItems, addItemToCart, removeItemFromCart, decreaseCartItem } = useContext(CartContext);
   const { dollarRate, conversionError } = useCurrencyConversion();
-  console.log(cartItems)
 
   const handleAddItem = (item) => {
     addItemToCart(item);
@@ -23,63 +22,81 @@ export default function CartItem() {
     return <div>Error fetching dollar rate.</div>;
   }
 
-  return (
-    <section className="flex justify-center container">
-      <div className="flex flex-row justify-start -m-7">
-        <div className="w-screen">
-          <h5 className="text-2xl font-semibold mb-4">Cart</h5>
-          <table className="w-full border border-slate-950 divide-y divide-slate-950">
-            <thead>
-              <tr className="bg-slate-950 text-white">
-                <th className="px-4 py-2">Image</th>
-                <th className="px-4 py-2">Name</th>
-                <th className="px-4 py-2">Price (USD)</th>
-                <th className="px-4 py-2">Price (BRL)</th>
-                <th className="px-4 py-2">Quantity</th>
-                <th className="px-4 py-2">Points</th>
-                <th className="px-4 py-2">Subtotal (BRL)</th>
-                <th className="px-4 py-2">Actions</th>
-              </tr>
-            </thead>  
-            <tbody>   
-              {cartItems.map((...produto) => (
-             <tr key={produto.id}>
-                  <td className="px-4 py-2">
-                    <img src={produto.image} className="h-24" />
-                  </td>
-                  <td className="px-4 py-2">{produto.name}</td>
-                  <td className="px-4 py-2">R${Number(produto.price).toFixed(2)}</td>
+  const calculateTotalPoints = () => {
+    return cartItems.reduce((totalPoints, item) => totalPoints + item.pontos, 0);
+  };
 
-                  <td className="px-4 py-2">R${(produto.price * dollarRate).toFixed(2)}</td>
-                  <td className="px-4 py-2">{produto.quantity}</td>
-                  <td className="px-4 py-2">{produto.pontos}</td>
-                  <td className="px-4 py-2">R${(produto.price * produto.quantity * dollarRate).toFixed(2)}</td>
-                  <td className="px-4 py-2">
-                    <button
-                      onClick={() => handleDecreaseItem(produto.id)}
-                      className="bg-blue-500 text-white px-2 py-1 mr-2"
-                    >
-                      -
-                    </button>
-                    <button
-                      onClick={() => handleAddItem(produto)}
-                      className="bg-green-500 text-white px-2 py-1 mr-2"
-                    >
-                      +
-                    </button>
-                    <button
-                      onClick={() => handleRemoveItem(produto.id)}
-                      className="bg-red-500 text-white px-2 py-1"
-                    >
-                      Remove
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+  const renderBonusGift = () => {
+    const totalPoints = calculateTotalPoints();
+    let bonusGift = "";
+
+    if (totalPoints >= 10000) {
+      bonusGift = "Camiseta personalizada";
+    } else if (totalPoints >= 5000) {
+      bonusGift = "Squeeze";
+    } else if (totalPoints >= 2000) {
+      bonusGift = "Chaveiro";
+    }
+
+    return (
+      <div>
+        {bonusGift && (
+          <div className="text-lg font-semibold mt-4">
+            Bonus Gift: {bonusGift}
+          </div>
+        )}
       </div>
-    </section>
+    );
+  };
+
+  return (
+    <div className="container mx-auto mt-2">
+     
+      <div className="table-responsive">
+        <table className="w-full border border-gray-200 divide-y divide-gray-200">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="px-2 py-1 md:px-4 md:py-2">Image</th>
+              <th className="px-2 py-1 md:px-4 md:py-2">Name</th>
+              <th className="px-2 py-1 md:px-4 md:py-2">Price (USD)</th>
+              <th className="px-2 py-1 md:px-4 md:py-2">Price (BRL)</th>
+              <th className="px-2 py-1 md:px-4 md:py-2">Quantity</th>
+              <th className="px-2 py-1 md:px-4 md:py-2">Points</th>
+              <th className="px-2 py-1 md:px-4 md:py-2">Subtotal (BRL)</th>
+              <th className="px-2 py-1 md:px-4 md:py-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cartItems.map((item) => (
+              <tr key={item.id}>
+                <td className="px-2 py-1 md:px-4 md:py-2">
+                  <img src={item.image} alt={item.name} className="h-16 w-16 object-contain" />
+                </td>
+                <td className="px-2 py-1 md:px-4 md:py-2">{item.name}</td>
+                <td className="px-2 py-1 md:px-4 md:py-2">${Number(item.price).toFixed(2)}</td>
+                <td className="px-2 py-1 md:px-4 md:py-2">R${(item.price * dollarRate).toFixed(2)}</td>
+                <td className="px-2 py-1 md:px-4 md:py-2">{item.quantity}</td>
+                <td className="px-2 py-1 md:px-4 md:py-2">{item.points}</td>
+                <td className="px-2 py-1 md:px-4 md:py-2">R${(item.price * item.quantity * dollarRate).toFixed(2)}</td>
+                <td className="px-2 py-1 md:px-4 md:py-2 space-x-2">
+                  <button onClick={() => handleDecreaseItem(item.id)} className="bg-blue-500 text-white px-2 py-1 rounded">
+                    -
+                  </button>
+                  <button onClick={() => handleAddItem(item)} className="bg-green-500 text-white px-2 py-1 rounded">
+                    +
+                  </button>
+                  <button onClick={() => handleRemoveItem(item.id)} className="bg-red-500 text-white px-2 py-1 rounded">
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {renderBonusGift()}
+    </div>
   );
-}
+};
+
+export default CartItem;
