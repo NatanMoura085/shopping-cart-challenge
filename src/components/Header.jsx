@@ -19,7 +19,7 @@ export default function Header() {
         className="flex items-center cursor-pointer"
         to={{
           pathname: "/checkout",
-          state: { cartItems },
+        
         }}
       >
         <ShoppingBagOutline className="h-7 text-cyan-50" />

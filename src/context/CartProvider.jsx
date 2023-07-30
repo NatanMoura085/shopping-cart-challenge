@@ -1,14 +1,25 @@
-import { createContext, useCallback, useState } from "react";
+import { createContext } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+
 export const CartContext = createContext();
+
 export default function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useLocalStorage("cartItems", []);
 
   const addItemToCart = (product) => {
     setCartItems([...cartItems, product]);
   };
-  console.log(cartItems);
+
   const removeItemFromCart = (itemId) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
+  };
+
+  const decreaseCartItem = (itemId) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId ? { ...item, quantity: item.quantity - 1 } : item
+      )
+    );
   };
 
   const clearCart = () => {
@@ -17,7 +28,13 @@ export default function CartProvider({ children }) {
 
   return (
     <CartContext.Provider
-      value={{ addItemToCart, removeItemFromCart, clearCart,cartItems }}
+      value={{
+        addItemToCart,
+        removeItemFromCart,
+        decreaseCartItem,
+        clearCart,
+        cartItems,
+      }}
     >
       {children}
     </CartContext.Provider>

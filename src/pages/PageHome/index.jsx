@@ -3,7 +3,7 @@ import PageProdutos from "../PageProdutos";
 
 export default function PageHome() {
   return (
-    <main>
+    <main className="min-h-screen flex flex-col" >
       <Header />
       <PageProdutos/>
     </main>
