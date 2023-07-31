@@ -1,9 +1,12 @@
+import image1 from "../../public/Iphone.webp";
+import image2 from "../../public/iphone14.png";
+import image3 from "../../public/phone.jpg";
 const productList = [
   {
     id: 1,
     name: "iphone",
     price: 10.99,
-    image: "../../public/Iphone.webp",
+    image: image1,
     pontos: 2000,
     quantity: 1,
   },
@@ -12,7 +15,7 @@ const productList = [
     name: "iphone14",
     price: 19.99,
     pontos: 3000,
-    image: "../../public/iphone14.png",
+    image:image2,
     quantity: 1,
   },
   {
@@ -20,7 +23,7 @@ const productList = [
     name: "iphone7",
     price: 5.49,
     pontos: 10000,
-    image: "../../public/phone.jpg",
+    image:image3,
     quantity: 1,
   },
 ];
