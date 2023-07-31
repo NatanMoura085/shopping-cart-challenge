@@ -9,7 +9,7 @@ const ProductCard = ({
   image,
   description,
   dollarRate,
-  textBtn
+  textBtn,
 }) => {
   const priceBRL = (priceUSD * dollarRate).toFixed(2);
 
@@ -19,13 +19,11 @@ const ProductCard = ({
     const existingItem = cartItems.find((item) => item.id === produto.id);
 
     if (existingItem) {
-     
       addItemToCart({
         ...existingItem,
         quantity: existingItem.quantity + 1,
       });
     } else {
-
       const item = {
         id: produto,
         name: produto,
@@ -45,32 +43,29 @@ const ProductCard = ({
 
   return (
     <div className="bg-white h-96 w-60 flex flex-col items-center border border-gray-300 shadow-md rounded-md p-6 ">
-      <div className="w-full h-56 mb-4 overflow-hidden">
+      <div className="w-full h-auto m-auto overflow-hidden">
         <img
           src={image}
-          className="w-full h-full object-cover mix-blend-multiply"
+          className="w-full h-auto object-cover mix-blend-multiply"
           alt={produto}
         />
       </div>
 
-      <div className="text-center  ">
-        <h3 className="font-semibold text-xl">{produto}</h3>
-        <p className="font-medium text-lg text-gray-600">
-          ${priceUSD}
-        </p>
-        <p className="font-medium text-lg text-gray-600">
-          R${priceBRL}
-        </p>
+      <div className="flex flex-col gap-y-2">
+        <h3 className="font-semibold text-xl text-center">{produto}</h3>
+        <div className="flex flex-row items-center justify-center gap-x-2 font-semibold text-lg text-gray-600">
+          <p>${priceUSD}</p>
+          <p>-</p>
+          <p>R${priceBRL}</p>
+        </div>
         <div className="flex justify-center">
           {quantityInCart > 0 && <p>{quantityInCart}</p>}
           <button
             onClick={handleAddToCart}
-            className="bg-[#ef3c44] p-2 rounded-full w-32 flex justify-center items-center font-semibold text-white gap-1"
+            className=" bg-rose-700 hover:bg-rose-600 focus:bg-rose-600 py-3 px-4 m-auto rounded-full flex justify-center items-center font-semibold text-white gap-2 ease-in-out duration-200 hover:scale-105 focus:ring-2  focus:ring-rose-300 transform active:scale-x-95 transition-transform"
           >
             {Icon}
             {textBtn}
-            
-           
           </button>
         </div>
       </div>
