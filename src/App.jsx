@@ -4,7 +4,7 @@ import Ways from "./routes";
 export default function App() {
   return (
     <CartProvider>
-      <div className="bg-[#e5e6e6] h-screen">
+      <div className="bg-slate-200 h-screen">
         <Ways />
       </div>
     </CartProvider>

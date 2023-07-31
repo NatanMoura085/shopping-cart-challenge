@@ -3,10 +3,11 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../context/CartProvider";
 import useCurrencyConversion from "../hooks/useCurrencyConversion";
 import CustomButton from "./UI/CustomButton";
-
+  
 const CartItem = () => {
   const [totalBRL, setTotalBRL] = useState(0);
   const [totalUSD, setTotalUSD] = useState(0);
+  const [includeBonusGift, setIncludeBonusGift] = useState(false)
   const { cartItems, addItemToCart, removeItemFromCart, decreaseCartItem } =
     useContext(CartContext);
   const { dollarRate, conversionError } = useCurrencyConversion();
@@ -41,7 +42,9 @@ const CartItem = () => {
   const handleDecreaseItem = (itemId) => {
     decreaseCartItem(itemId);
   };
-
+  const toggleIncludeBonusGift = () => {
+    setIncludeBonusGift((prev) => !prev);
+  };
   if (conversionError) {
     return <div>Error fetching dollar rate.</div>;
   }
@@ -51,10 +54,11 @@ const CartItem = () => {
       (totalPoints, item) => totalPoints + item.points,
       0
     );
+ 
     let bonusGift = "";
 
     if (totalPoints >= 10000) {
-      bonusGift = "Camiseta personalizada";
+      bonusGift = " Camiseta ";
     } else if (totalPoints >= 5000) {
       bonusGift = "Squeeze";
     } else if (totalPoints >= 2000) {
@@ -64,9 +68,9 @@ const CartItem = () => {
     return (
       <div>
         {bonusGift && (
-          <div className="text-lg font-semibold flex flex-row gap-56">
-            <p>Bonus Gift:</p>
-            <p>{bonusGift}</p>
+          <div className="text-lg font-semibold flex flex-row gap-60">
+            <p className="">BonusGift:</p>
+            <p className="  ">{bonusGift}</p>
           </div>
         )}
       </div>
@@ -174,7 +178,7 @@ const CartItem = () => {
                           viewBox="0 0 24 24"
                           stroke="currentColor"
                         >
-                          <path d="M12 4v16m8-8H4"></path>
+                          <path d="M12 4v16m8-8H4"></path>  
                         </svg>
                       </button>
                       <button
@@ -221,7 +225,16 @@ const CartItem = () => {
             </div>
             {renderBonusGift() && (
               <div className="mt-4 text-lg font-semibold flex justify-between">
-                {renderBonusGift()}
+             {renderBonusGift()}
+                <div className="flex mt-2 relative left-1">
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4 gap-2 text-rose-700 focus:ring-rose-700 border-gray-300 rounded"
+                    checked={includeBonusGift}
+                    onChange={toggleIncludeBonusGift}
+                  />
+                  <span className="ml-2 text-sm text-gray-600  gap-2"></span>
+                </div>
               </div>
             )}
           </div>

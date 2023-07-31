@@ -7,7 +7,8 @@ export default function Ways() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<PageHome />} />
+        
+        <Route index element={<PageHome />}  />
         <Route index element={<PageProdutos />} />
         <Route path="/checkout" element={<PageCheckout />} />
         <Route path="*" element={<NotFound />} />

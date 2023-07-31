@@ -19,7 +19,7 @@ const productList = [
     id: 3,
     name: "iphone7",
     price: 5.49,
-    pontos: 1000,
+    pontos: 10000,
     image: "../../public/phone.jpg",
     quantity: 1,
   },
