@@ -1,10 +1,31 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../context/CartProvider";
 import useCurrencyConversion from "../hooks/useCurrencyConversion";
 
 const CartItem = () => {
+  const [totalBRL, setTotalBRL] = useState(0);
+  const [totalUSD, setTotalUSD] = useState(0);
   const { cartItems, addItemToCart, removeItemFromCart, decreaseCartItem } = useContext(CartContext);
   const { dollarRate, conversionError } = useCurrencyConversion();
+
+
+  const calculateTotal = () => {
+    const totalBRL = cartItems.reduce(
+      (accumulator, item) => accumulator + item.price * item.quantity * dollarRate,
+      0
+    );
+    setTotalBRL(totalBRL.toFixed(2));
+
+    const totalUSD = cartItems.reduce(
+      (accumulator, item) => accumulator + item.price * item.quantity,
+      0
+    );
+    setTotalUSD(totalUSD.toFixed(2));
+  };
+
+  useEffect(() => {
+    calculateTotal(); 
+  }, [cartItems, dollarRate]);
 
   const handleAddItem = (item) => {
     addItemToCart(item);
@@ -22,12 +43,8 @@ const CartItem = () => {
     return <div>Error fetching dollar rate.</div>;
   }
 
-  const calculateTotalPoints = () => {
-    return cartItems.reduce((totalPoints, item) => totalPoints + item.pontos, 0);
-  };
-
   const renderBonusGift = () => {
-    const totalPoints = calculateTotalPoints();
+    const totalPoints = cartItems.reduce((totalPoints, item) => totalPoints + item.points, 0);
     let bonusGift = "";
 
     if (totalPoints >= 10000) {
@@ -93,6 +110,10 @@ const CartItem = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="mt-4">
+        <p className="text-lg font-semibold">Total in BRL: R${totalBRL}</p>
+        <p className="text-lg font-semibold">Total in USD: ${totalUSD}</p>
       </div>
       {renderBonusGift()}
     </div>
