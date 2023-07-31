@@ -87,7 +87,7 @@ const CartItem = () => {
             {cartItems.map((item) => (
               <tr key={item.id}>
                 <td className="px-2 py-1 md:px-4 md:py-2">
-                  <img src={item.image} alt={item.name} className="h-16 w-16 object-contain" />
+                  <img src={item.image} alt={item.name} className="h-16 w-16 object-contain mix-blend-multiply" />
                 </td>
                 <td className="px-2 py-1 md:px-4 md:py-2">{item.name}</td>
                 <td className="px-2 py-1 md:px-4 md:py-2">${Number(item.price).toFixed(2)}</td>

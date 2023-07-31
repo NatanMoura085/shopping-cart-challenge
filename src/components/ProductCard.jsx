@@ -9,6 +9,7 @@ const ProductCard = ({
   image,
   description,
   dollarRate,
+  textBtn
 }) => {
   const priceBRL = (priceUSD * dollarRate).toFixed(2);
 
@@ -24,7 +25,7 @@ const ProductCard = ({
         quantity: existingItem.quantity + 1,
       });
     } else {
-      // Caso contrário, adicione um novo item ao carrinho
+
       const item = {
         id: produto,
         name: produto,
@@ -55,19 +56,21 @@ const ProductCard = ({
       <div className="text-center  ">
         <h3 className="font-semibold text-xl">{produto}</h3>
         <p className="font-medium text-lg text-gray-600">
-          Price in USD: ${priceUSD}
+          ${priceUSD}
         </p>
         <p className="font-medium text-lg text-gray-600">
-          Price in BRL: R${priceBRL}
+          R${priceBRL}
         </p>
         <div className="flex justify-center">
           {quantityInCart > 0 && <p>{quantityInCart}</p>}
           <button
             onClick={handleAddToCart}
-            className="bg-[#ef3c44] text-white px-4 py-2 rounded-md flex gap-1 items-center"
+            className="bg-[#ef3c44] p-2 rounded-full w-32 flex justify-center items-center font-semibold text-white gap-1"
           >
             {Icon}
-            Add to Cart
+            {textBtn}
+            
+           
           </button>
         </div>
       </div>
