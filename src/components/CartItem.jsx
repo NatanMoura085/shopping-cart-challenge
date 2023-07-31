@@ -1,6 +1,8 @@
+import React from "react";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../context/CartProvider";
 import useCurrencyConversion from "../hooks/useCurrencyConversion";
+import CustomButton from "./UI/CustomButton";
 
 const CartItem = () => {
   const [totalBRL, setTotalBRL] = useState(0);
@@ -62,8 +64,9 @@ const CartItem = () => {
     return (
       <div>
         {bonusGift && (
-          <div className="text-lg font-semibold mt-4">
-            Bonus Gift: {bonusGift}
+          <div className="text-lg font-semibold flex flex-row gap-56">
+            <p>Bonus Gift:</p>
+            <p>{bonusGift}</p>
           </div>
         )}
       </div>
@@ -71,14 +74,14 @@ const CartItem = () => {
   };
 
   return (
-    <div className="container mx-auto  flex gap-4">
+    <div className="container mx-auto  flex flex-col sm:flex-row gap-4">
       <div className="rounded-lg overflow-hidden">
         <div className="px-4 py-4 sm:p-6">
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-300">
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                  Product
+                <th className="px-10 py-2 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                  (11)34234324
                 </th>
                 <th className="px-4 py-2 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                   Price (USD)
@@ -199,9 +202,8 @@ const CartItem = () => {
         </div>
       </div>
       <span className="border border-gray-600 my-4" />
-      {renderBonusGift()}
-      <aside className="  w-4/12">
 
+      <aside className="  w-full sm:w-4/12">
         <div className=" bg-gray-200 p-4 mt-7">
           <header className="font-semibold">Resumo da compra</header>
           <div className="info mt-2">
@@ -217,15 +219,20 @@ const CartItem = () => {
               <span className="font-semibold">TotalUSD</span>
               <span className="font-semibold"> $ {totalUSD}</span>
             </div>
+            {renderBonusGift() && (
+              <div className="mt-4 text-lg font-semibold flex justify-between">
+                {renderBonusGift()}
+              </div>
+            )}
           </div>
           <footer className=" mt-4 flex justify-between">
             <span className="font-semibold">TotalBRL</span>
             <span className="font-semibold">R$ {totalBRL}</span>
           </footer>
         </div>
-        <button className="mt-4 bg-[#ef3c44] text-white px-4 py-2 rounded">
-          Finalizar Compra
-        </button>
+        <div className="flex justify-center mt-4">
+          <CustomButton>Finalizar Compra</CustomButton>
+        </div>
       </aside>
     </div>
   );
