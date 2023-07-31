@@ -24,7 +24,7 @@ export default function Header() {
       >
         <ShoppingBagOutline className="h-7 text-cyan-50" />
         {cartItems.length > 0 && (
-          <div className="bg-white text-black rounded-full w-5 h-5 flex justify-center items-center">
+          <div className="bg-white animate-pulse text-black rounded-full w-5 h-5 flex justify-center items-center  relative  right-3  bottom-2">
             {cartItems.length}
           </div>
         )}

@@ -4,7 +4,7 @@ const productList = [
     name: "iphone",
     price: 10.99,
     image: "../../public/Iphone.webp",
-    pontos: 100,
+    pontos: 1000,
     quantity: 1,
   },
   {
@@ -19,7 +19,7 @@ const productList = [
     id: 3,
     name: "iphone7",
     price: 5.49,
-    pontos: 300,
+    pontos: 2000,
     image: "../../public/phone.jpg",
     quantity: 1,
   },

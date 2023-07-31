@@ -1,7 +1,6 @@
-
 import ProductCard from "../../components/ProductCard";
 import productList from "../../data/productList";
-import { ShoppingCartOutline  } from "@graywolfai/react-heroicons";
+import { ShoppingCartOutline } from "@graywolfai/react-heroicons";
 import useDollarRate from "../../hooks/useDollarRate";
 
 const PageProdutos = () => {
@@ -13,14 +12,14 @@ const PageProdutos = () => {
         {productList.map((product) => (
           <ProductCard
             key={product.id}
-            Icon={<ShoppingCartOutline  className="w-5 h-5 text-white "  />}
+            Icon={<ShoppingCartOutline className="w-5 h-5 text-white" />}
             produto={product.name}
             priceUSD={product.price}
             pontos={product.pontos}
             image={product.image}
             description={product.description}
             dollarRate={dollarRate}
-            textBtn="Add to Cart"
+            textBtn="buy now"
           />
         ))}
       </div>

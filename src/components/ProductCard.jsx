@@ -9,7 +9,7 @@ const ProductCard = ({
   image,
   description,
   dollarRate,
-  textBtn,
+  textBtn, 
 }) => {
   const priceBRL = (priceUSD * dollarRate).toFixed(2);
 
@@ -57,6 +57,7 @@ const ProductCard = ({
           <p>${priceUSD}</p>
           <p>-</p>
           <p>R${priceBRL}</p>
+         
         </div>
         <div className="flex justify-center">
           {quantityInCart > 0 && <p>{quantityInCart}</p>}
