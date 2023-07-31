@@ -5,6 +5,7 @@ import {
   ShoppingBagOutline,
 } from "@graywolfai/react-heroicons";
 import { useCart } from "../hooks/UseCart";
+
 export default function Header() {
   const { cartItems } = useCart();
 
@@ -19,10 +20,14 @@ export default function Header() {
         className="flex items-center cursor-pointer"
         to={{
           pathname: "/checkout",
-        
         }}
       >
         <ShoppingBagOutline className="h-7 text-cyan-50" />
+        {cartItems.length > 0 && (
+          <div className="bg-white text-black rounded-full w-5 h-5 flex justify-center items-center">
+            {cartItems.length}
+          </div>
+        )}
       </Link>
     </header>
   );
