@@ -82,27 +82,27 @@ const CartItem = () => {
       <div className="rounded-lg overflow-hidden">
         <div className="px-4 py-4 sm:p-6">
           <table className="w-full">
-            <thead>
+            <thead> 
               <tr className="border-b border-gray-300">
-                <th className="px-10 py-2 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                <th className="px-4 py-4 whitespace-nowrap text-center  text-xs font-medium text-gray-600 uppercase tracking-wider">
                   (11)34234324
                 </th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                <th className="px-4 py-4 whitespace-nowrap text-center text-xs font-medium text-gray-600 uppercase tracking-wider">
                   Price (USD)
                 </th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                <th className="px-4 py-4 whitespace-nowrap text-center text-xs font-medium text-gray-600 uppercase tracking-wider">
                   Price (BRL)
                 </th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                <th className="px-4 py-4 whitespace-nowrap text-center text-xs font-medium text-gray-600 uppercase tracking-wider">
                   Quantity
                 </th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                <th className="px-4 py-4 whitespace-nowrap text-center text-xs font-medium text-gray-600 uppercase tracking-wider">
                   Points
                 </th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                <th className="px-4 py-4 whitespace-nowrap text-center text-xs font-medium text-gray-600 uppercase tracking-wider">
                   Subtotal (BRL)
                 </th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                <th className="px-4 py-4 whitespace-nowrap text-center text-xs font-medium text-gray-600 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
