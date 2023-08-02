@@ -26,8 +26,8 @@ Este é um projeto de carrinho de compras simples, onde os usuários podem visua
 1. Certifique-se de ter o Node.js instalado em seu computador.
 2. Faça o clone deste repositório para o seu computador.
 3. Navegue para o diretório do projeto e execute o comando `npm install` para instalar as dependências.
-4. Em seguida, execute o comando `npm start` para iniciar o servidor de desenvolvimento.
-5. Acesse o projeto em `http://localhost:3000` no seu navegador.
+4. Em seguida, execute o comando `npm run dev` para iniciar o servidor de desenvolvimento.
+5. Acesse o projeto em `http://localhost:5173` no seu navegador.
 
 ## Estrutura de Arquivos
 

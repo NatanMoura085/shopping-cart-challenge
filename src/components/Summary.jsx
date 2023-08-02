@@ -4,6 +4,9 @@ import CustomButton from "./UI/CustomButton";
 import useCurrencyConversion from "../hooks/useCurrencyConversion";
 import { CartContext } from "../context/CartProvider";
 
+import { TrashSolid } from "@graywolfai/react-heroicons";
+
+
 const Summary = () => {
   const [totalBRL, setTotalBRL] = useState(0);
   const [totalUSD, setTotalUSD] = useState(0);
@@ -44,7 +47,7 @@ const Summary = () => {
   };
 
   return (
-    <aside className="w-full sm:w-4/12 bg-gray-200 p-4 mt-7">
+    <aside className="w-full sm:w-4/12 bg-gray-100 p-4 mt-7 rounded-md">
       <header className="font-semibold text-center sm:text-left">
         Resumo da compra
       </header>
@@ -61,18 +64,18 @@ const Summary = () => {
           <span className="font-semibold">Total USD</span>
           <span className="font-semibold">$ {totalUSD}</span>
         </div>
-        {renderBonusGift() && (
+        {renderBonusGift() && (   
           <div className="mt-4 text-lg font-semibold flex justify-between items-center">
             {renderBonusGift()}
-            <div className="flex mt-2 relative left-1">
-              <input
-                type="checkbox"
-                className="h-4 w-4 text-rose-700 focus:ring-rose-700 border-gray-300 rounded"
-                checked={includeBonusGift}
-                onChange={toggleIncludeBonusGift}
-              />
-              <span className="ml-2 text-sm text-gray-600">Incluir brinde</span>
-            </div>
+            {includeBonusGift && (
+              <div
+                className="flex mt-2 cursor-pointer"
+                onClick={() => toggleIncludeBonusGift()}
+              >
+                <TrashSolid className="h-5 w-5 text-rose-700" />
+                <span className="ml-2 text-sm text-gray-600">Remover brinde</span>
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -88,4 +91,3 @@ const Summary = () => {
 };
 
 export default Summary;
-    

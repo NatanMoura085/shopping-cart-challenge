@@ -1,4 +1,5 @@
 import React from "react";
+import { TrashSolid } from "@graywolfai/react-heroicons";
 
 const BonusGift = ({ totalPoints }) => {
   let bonusGift = "";
@@ -14,9 +15,9 @@ const BonusGift = ({ totalPoints }) => {
   return (
     <div>
       {bonusGift && (
-        <div className="text-lg font-semibold flex flex-row gap-60">
-          <p className="">BonusGift:</p>
-          <p className="  ">{bonusGift}</p>
+        <div className="text-lg font-semibold flex flex-row  sm:flex-row  sm:items-center gap-40">
+          <p className="sm:text-left">BonusGift:</p>
+          <p className="">{bonusGift}</p>
         </div>
       )}
     </div>
@@ -24,4 +25,3 @@ const BonusGift = ({ totalPoints }) => {
 };
 
 export default BonusGift;
-    
