@@ -5,19 +5,19 @@ const BonusGift = ({ totalPoints }) => {
   let bonusGift = "";
 
   if (totalPoints >= 10000) {
-    bonusGift = " Camiseta ";
+    bonusGift = "camiseta ";
   } else if (totalPoints >= 5000) {
-    bonusGift = "Squeeze";
+    bonusGift = "squeeze";
   } else if (totalPoints >= 2000) {
-    bonusGift = "Chaveiro";
+    bonusGift = "chaveiro";
   }
 
   return (
     <>
       {bonusGift && (
-        <div className="text-lg font-semibold flex flex-row sm:flex-row sm:items-center justify-between w-full">
-          <p className="sm:text-left">BonusGift:</p>
-          <p className="">{bonusGift}</p>
+        <div className="text-lg font-semibold flex flex-row sm:flex-row gap-x-2 sm:items-center justify-end w-full">
+          <p className="font-bold text-gray-600">Cupom:</p>
+          <p className="font-medium text-sky-600 uppercase">{bonusGift}</p>
         </div>
       )}
     </>
