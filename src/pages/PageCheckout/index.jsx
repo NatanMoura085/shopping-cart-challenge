@@ -6,7 +6,6 @@ export default function PageCheckout() {
   return (
     <div className="w-full h-full flex flex-col p-4 md:flex-row md:space-x-4">
       <CartItem />
-
       <Summary />
     </div>
   );
