@@ -6,7 +6,6 @@ import { CartContext } from "../context/CartProvider";
 
 import { TrashSolid } from "@graywolfai/react-heroicons";
 
-
 const Summary = () => {
   const [totalBRL, setTotalBRL] = useState(0);
   const [totalUSD, setTotalUSD] = useState(0);
@@ -21,7 +20,8 @@ const Summary = () => {
 
   const calculateTotal = () => {
     const totalBRL = cartItems.reduce(
-      (accumulator, item) => accumulator + item.price * item.quantity * dollarRate,
+      (accumulator, item) =>
+        accumulator + item.price * item.quantity * dollarRate,
       0
     );
     setTotalBRL(totalBRL.toFixed(2));
@@ -51,7 +51,7 @@ const Summary = () => {
       <header className="font-semibold text-center sm:text-left">
         Resumo da compra
       </header>
-      <div className="info mt-2">
+      <div className=" mt-2">
         <div className="flex justify-between">
           <span>Sub-total</span>
           <span>R$ {totalBRL}</span>
@@ -64,7 +64,7 @@ const Summary = () => {
           <span className="font-semibold">Total USD</span>
           <span className="font-semibold">$ {totalUSD}</span>
         </div>
-        {renderBonusGift() && (   
+        {renderBonusGift() && (
           <div className="mt-4 text-lg font-semibold flex justify-between items-center">
             {renderBonusGift()}
             {includeBonusGift && (
@@ -73,7 +73,9 @@ const Summary = () => {
                 onClick={() => toggleIncludeBonusGift()}
               >
                 <TrashSolid className="h-5 w-5 text-rose-700" />
-                <span className="ml-2 text-sm text-gray-600">Remover brinde</span>
+                <span className="ml-2 text-sm text-gray-600">
+                  Remover brinde
+                </span>
               </div>
             )}
           </div>

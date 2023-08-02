@@ -13,14 +13,14 @@ const BonusGift = ({ totalPoints }) => {
   }
 
   return (
-    <div>
+    <>
       {bonusGift && (
-        <div className="text-lg font-semibold flex flex-row  sm:flex-row  sm:items-center gap-40">
+        <div className="text-lg font-semibold flex flex-row sm:flex-row sm:items-center justify-between w-full">
           <p className="sm:text-left">BonusGift:</p>
           <p className="">{bonusGift}</p>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
