@@ -9,7 +9,9 @@ const ProductCard = ({
   image,
   description,
   dollarRate,
-  textBtn, 
+  textBtn,
+  className,
+  ...rest 
 }) => {
   const priceBRL = (priceUSD * dollarRate).toFixed(2);
 
@@ -42,7 +44,7 @@ const ProductCard = ({
     .reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <div className="bg-white h-96 w-60 flex flex-col items-center border border-gray-300 shadow-md rounded-md p-6 ">
+    <div className="bg-white h-96 w-60 flex flex-col items-center border border-gray-300 shadow-md rounded-md p-6 " {...rest}>
       <div className="w-full h-auto m-auto overflow-hidden">
         <img
           src={image}
