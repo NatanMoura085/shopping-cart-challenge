@@ -3,7 +3,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const CartContext = createContext();
 
-export default function CartProvider({ children }) {
+const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useLocalStorage("cartItems", []);
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -60,4 +60,5 @@ export default function CartProvider({ children }) {
       {children}
     </CartContext.Provider>
   );
-}
+};
+export default CartProvider;
